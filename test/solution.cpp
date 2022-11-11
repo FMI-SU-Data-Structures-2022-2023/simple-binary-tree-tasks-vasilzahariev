@@ -122,3 +122,97 @@ TEST_CASE("Validate isBST") {
 
     clean(test);
 }
+
+TEST_CASE("Validate Inorder") {
+    Node* tree = new Node(1);
+    std::vector<int> traversal;
+
+    Inorder(tree, traversal);
+
+    CHECK(traversal[0] == 1);
+    traversal.clear();
+
+    tree->left = new Node(2);
+    tree->right = new Node(3);
+
+    Inorder(tree, traversal);
+
+    CHECK(traversal[0] == 2);
+    CHECK(traversal[1] == 1);
+    CHECK(traversal[2] == 3);
+    traversal.clear();
+
+    tree->left->right = new Node(4);
+
+    Inorder(tree, traversal);
+
+    CHECK(traversal[0] == 2);
+    CHECK(traversal[1] == 4);
+    CHECK(traversal[2] == 1);
+    CHECK(traversal[3] == 3);
+
+    clean(tree);
+}
+
+TEST_CASE("Validate PreOrder") {
+    Node* tree = new Node(1);
+    std::vector<int> traversal;
+
+    PreOrder(tree, traversal);
+
+    CHECK(traversal[0] == 1);
+    traversal.clear();
+
+    tree->left = new Node(2);
+    tree->right = new Node(3);
+
+    PreOrder(tree, traversal);
+
+    CHECK(traversal[0] == 1);
+    CHECK(traversal[1] == 2);
+    CHECK(traversal[2] == 3);
+    traversal.clear();
+
+    tree->left->right = new Node(4);
+
+    PreOrder(tree, traversal);
+
+    CHECK(traversal[0] == 1);
+    CHECK(traversal[1] == 2);
+    CHECK(traversal[2] == 4);
+    CHECK(traversal[3] == 3);
+
+    clean(tree);
+}
+
+TEST_CASE("Validate PostOrder") {
+    Node* tree = new Node(1);
+    std::vector<int> traversal;
+
+    PostOrder(tree, traversal);
+
+    CHECK(traversal[0] == 1);
+    traversal.clear();
+
+    tree->left = new Node(2);
+    tree->right = new Node(3);
+
+    PostOrder(tree, traversal);
+
+    CHECK(traversal[0] == 2);
+    CHECK(traversal[1] == 3);
+    CHECK(traversal[2] == 1);
+    traversal.clear();
+
+    tree->left->right = new Node(4);
+
+    PostOrder(tree, traversal);
+
+    CHECK(traversal[0] == 4);
+    CHECK(traversal[1] == 2);
+    CHECK(traversal[2] == 3);
+    CHECK(traversal[3] == 1);
+
+    clean(tree);
+}
+
