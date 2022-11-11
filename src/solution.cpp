@@ -84,8 +84,8 @@ void PreOrder(Node* tree, std::vector<int>& result) {
     if (!tree)
         return;
 
-    PreOrder(tree->left, result);
     result.push_back(tree->key);
+    PreOrder(tree->left, result);
     PreOrder(tree->right, result);
 }
 
