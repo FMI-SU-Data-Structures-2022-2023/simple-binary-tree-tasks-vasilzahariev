@@ -129,7 +129,7 @@ TEST_CASE("Validate Inorder") {
 
     Inorder(tree, traversal);
 
-    CHECK(traversal[0] == 1);
+    CHECK(traversal == std::vector{ 1 });
     traversal.clear();
 
     tree->left = new Node(2);
@@ -137,19 +137,14 @@ TEST_CASE("Validate Inorder") {
 
     Inorder(tree, traversal);
 
-    CHECK(traversal[0] == 2);
-    CHECK(traversal[1] == 1);
-    CHECK(traversal[2] == 3);
+    CHECK(traversal == std::vector{ 2, 1, 3 });
     traversal.clear();
 
     tree->left->right = new Node(4);
 
     Inorder(tree, traversal);
 
-    CHECK(traversal[0] == 2);
-    CHECK(traversal[1] == 4);
-    CHECK(traversal[2] == 1);
-    CHECK(traversal[3] == 3);
+    CHECK(traversal == std::vector{ 2, 4, 1, 3 });
 
     clean(tree);
 }
@@ -160,7 +155,7 @@ TEST_CASE("Validate PreOrder") {
 
     PreOrder(tree, traversal);
 
-    CHECK(traversal[0] == 1);
+    CHECK(traversal == std::vector<int>{ 1 });
     traversal.clear();
 
     tree->left = new Node(2);
@@ -168,19 +163,14 @@ TEST_CASE("Validate PreOrder") {
 
     PreOrder(tree, traversal);
 
-    CHECK(traversal[0] == 1);
-    CHECK(traversal[1] == 2);
-    CHECK(traversal[2] == 3);
+    CHECK(traversal == std::vector<int>{ 1, 2, 3 });
     traversal.clear();
 
     tree->left->right = new Node(4);
 
     PreOrder(tree, traversal);
 
-    CHECK(traversal[0] == 1);
-    CHECK(traversal[1] == 2);
-    CHECK(traversal[2] == 4);
-    CHECK(traversal[3] == 3);
+    CHECK(traversal == std::vector{ 1, 2, 4, 3 });
 
     clean(tree);
 }
@@ -191,7 +181,7 @@ TEST_CASE("Validate PostOrder") {
 
     PostOrder(tree, traversal);
 
-    CHECK(traversal[0] == 1);
+    CHECK(traversal == std::vector{ 1 });
     traversal.clear();
 
     tree->left = new Node(2);
@@ -199,19 +189,14 @@ TEST_CASE("Validate PostOrder") {
 
     PostOrder(tree, traversal);
 
-    CHECK(traversal[0] == 2);
-    CHECK(traversal[1] == 3);
-    CHECK(traversal[2] == 1);
+    CHECK(traversal == std::vector{ 2, 3, 1 });
     traversal.clear();
 
     tree->left->right = new Node(4);
 
     PostOrder(tree, traversal);
 
-    CHECK(traversal[0] == 4);
-    CHECK(traversal[1] == 2);
-    CHECK(traversal[2] == 3);
-    CHECK(traversal[3] == 1);
+    CHECK(traversal == std::vector{ 4, 2, 3, 1 });
 
     clean(tree);
 }
